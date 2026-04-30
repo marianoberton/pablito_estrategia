@@ -1,0 +1,18 @@
+[Unit]
+Description=Polymarket BTC Bot — Strategy Engine
+After=network.target pm-logger.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/polymarket-btc-bot
+EnvironmentFile=/home/ubuntu/polymarket-btc-bot/.env
+ExecStart=/home/ubuntu/polymarket-btc-bot/.venv/bin/python scripts/run_paper_trading.py
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

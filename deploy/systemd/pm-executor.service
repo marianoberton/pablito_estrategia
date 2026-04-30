@@ -1,0 +1,18 @@
+[Unit]
+Description=Polymarket BTC Bot — Live Executor
+After=network.target pm-strategy.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/polymarket-btc-bot
+EnvironmentFile=/home/ubuntu/polymarket-btc-bot/.env
+ExecStart=/home/ubuntu/polymarket-btc-bot/.venv/bin/python scripts/run_live_trading.py
+Restart=on-failure
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

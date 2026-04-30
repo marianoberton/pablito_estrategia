@@ -1,0 +1,18 @@
+[Unit]
+Description=Polymarket BTC Bot — Logger Service
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/polymarket-btc-bot
+EnvironmentFile=/home/ubuntu/polymarket-btc-bot/.env
+ExecStart=/home/ubuntu/polymarket-btc-bot/.venv/bin/python scripts/run_logger.py
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
